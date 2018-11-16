@@ -1,4 +1,5 @@
 package sample;
+
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,16 +22,16 @@ public class Controller {
 
   @FXML
   void connect(ActionEvent event) {
-    final String DATABASE_URL = "jdbc:derby:C:\\Users\\ncrespo2300\\OneDrive\\IdeaProjects\\Books\\lib\\books";
-    final String SELECT_QUERY =
+    final String Database_URL = "jdbc:derby:C:\\Users\\ncrespo2300\\OneDrive\\IdeaProjects\\BooksFX\\lib\\books";
+    final String Select_Query =
         "SELECT authorID, firstName, lastName FROM authors";
 
     // use try-with-resources to connect to and query the database
     try (
         Connection connection = DriverManager.getConnection(
-            DATABASE_URL, "deitel", "deitel");
+            Database_URL, "deitel", "deitel");
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(SELECT_QUERY))
+        ResultSet resultSet = statement.executeQuery(Select_Query))
     {
       resultSet.next();
       firstName.setText(resultSet.getString(2));
