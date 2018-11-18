@@ -22,23 +22,23 @@ public class Controller {
 
   @FXML
   void connect(ActionEvent event) {
-    final String Database_URL = "jdbc:derby:C:\\Users\\ncrespo2300\\OneDrive\\IdeaProjects\\BooksFX\\lib\\books";
+    final String Database_Url =
+            "jdbc:derby:C:\\Users\\ncrespo2300\\OneDrive\\IdeaProjects\\BooksFX\\lib\\books";
     final String Select_Query =
         "SELECT authorID, firstName, lastName FROM authors";
 
     // use try-with-resources to connect to and query the database
+    //Main thing with databases is to have the connection, statement, and resultset
     try (
         Connection connection = DriverManager.getConnection(
-            Database_URL, "deitel", "deitel");
+            Database_Url, "deitel", "deitel");
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(Select_Query))
-    {
+        ResultSet resultSet = statement.executeQuery(Select_Query)) {
       resultSet.next();
       firstName.setText(resultSet.getString(2));
       lastName.setText(resultSet.getString(3));
-    } // AutoCloseable objects' close methods are called now
-    catch (SQLException sqlException)
-    {
+      // AutoCloseable objects' close methods are called now
+    } catch (SQLException sqlException) {
       sqlException.printStackTrace();
     }
   }
